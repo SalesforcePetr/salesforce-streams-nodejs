@@ -68,7 +68,9 @@ class IndexPage extends React.Component {
           transitionLeaveTimeout={500}>
 
             {decendingMessageIds.map( id => {
+              console.log(`has id: ${id}`);
               const message = this.state.messages[id];
+              console.log(`has message: ${message}`);
               const [header, content, context, payload] = getMessageParts(message);
               return <li>
                 <p>
