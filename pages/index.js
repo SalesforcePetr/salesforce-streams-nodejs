@@ -69,13 +69,13 @@ class IndexPage extends React.Component {
 
             {decendingMessageIds.map( id => {
               const message = this.state.messages[id];
-              const [header, content, context, message] = getMessageParts(message);
+              const [header, content, context, payload] = getMessageParts(message);
               return <li>
                 <p>
-                  Die Rechnungsanschrift von {message.sobject.Name} (Kundennummer {message.sobject.FinServ__CustomerID__c}) hat sich verändert und lautet jetzt:<br/>
-                  <pre>{message.sobject.BillingStreet}
-{message.sobjectBillingPostalCode} {message.sobjectBillingCity}
-{message.sobjectBillingCountry}</pre>
+                  Die Rechnungsanschrift von {payload.sobject.Name} (Kundennummer {payload.sobject.FinServ__CustomerID__c}) hat sich verändert und lautet jetzt:<br/>
+                  <pre>{payload.sobject.BillingStreet}
+{payload.sobject.BillingPostalCode} {payload.sobject.BillingCity}
+{payload.sobject.BillingCountry}</pre>
                 </p>
               </li>
               ;
