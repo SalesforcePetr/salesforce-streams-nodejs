@@ -69,21 +69,8 @@ class IndexPage extends React.Component {
 
             {decendingMessageIds.map( id => {
               const message = this.state.messages[id];
-              const [header, content, context] = getMessageParts(message);
-              return <li
-                key={header.transactionKey}
-                style={header.changeType === 'GAP_UPDATE' ? { display: 'none'} : {}}>
-                <p>
-                  {(header.changeType || '(Typeless)').toLowerCase()} {' '}
-                  <strong>{context[`${header.entityName}Name`] || (Nameless)}</strong> {' '}
-                  {(header.entityName || '(nameless)').toLowerCase()}
-                  <br/>
-                  by {context.UserName || '(No commit user)'}{', '} 
-                    <span title={content.LastModifiedDate}>
-                      {this.timeAgo.format(Date.parse(content.LastModifiedDate)) || '(Dateless)'}
-                    </span>
-                </p>
-              </li>;
+              //const [header, content, context] = getMessageParts(message);
+              return <pre>{{message}}</pre>;
             })}
 
           </CSSTransitionGroup>
