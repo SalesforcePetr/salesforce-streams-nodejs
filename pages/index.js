@@ -69,10 +69,8 @@ class IndexPage extends React.Component {
 
             {decendingMessageIds.map( id => {
               const message = this.state.messages[id];
-              //const [header, content, context] = getMessageParts(message);
-              return <li
-                key={header.transactionKey}
-                style={header.changeType === 'GAP_UPDATE' ? { display: 'none'} : {}}>
+              const [header, content, context] = getMessageParts(message);
+              return <li>
                 <p>
                   {{content.Name}} changed address to<br/>
                   <pre>{{content.BillingStreet}}
