@@ -213,6 +213,8 @@ function getMessageParts(message) {
   const content = message.payload || {};
   const context = message.context || {};
   const header  = content.ChangeEventHeader || {};
+  console.log(`received context of ${JSON.stringify(context)}`);
+  console.log(`received content of ${JSON.stringify(content)}`);
   return [header, content, context];
 }
 
