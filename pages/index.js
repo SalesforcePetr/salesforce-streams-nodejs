@@ -42,7 +42,7 @@ class IndexPage extends React.Component {
           <meta charSet="utf-8"/>
           <meta httpEquiv="X-UA-Compatible" content="IE=edge"/>
           <meta name="viewport" content="width=device-width, initial-scale=1"/>
-          <title>Salesforce activity stream</title>
+          <title>Geänderte Adressdaten von Salesforce</title>
         </Head>
         <div>
           <h1>{'Salesforce activity '}
@@ -69,13 +69,13 @@ class IndexPage extends React.Component {
 
             {decendingMessageIds.map( id => {
               const message = this.state.messages[id];
-              const [header, content, context] = getMessageParts(message);
+              const [header, content, context, message] = getMessageParts(message);
               return <li>
                 <p>
-                  {content.Name} changed address to<br/>
-                  <pre>{content.BillingStreet}
-{content.BillingPostalCode} {content.BillingCity}
-{content.BillingCountry}</pre>
+                  Die Rechnungsanschrift von {message.sobject.Name} (Kundennummer {message.sobject.FinServ__CustomerID__c}) hat sich verändert und lautet jetzt:<br/>
+                  <pre>{message.sobject.BillingStreet}
+{message.sobjectBillingPostalCode} {message.sobjectBillingCity}
+{message.sobjectBillingCountry}</pre>
                 </p>
               </li>
               ;
@@ -180,8 +180,8 @@ class IndexPage extends React.Component {
       // Receive Salesforce change events as they occur.
       this.eventSource.addEventListener("salesforce", event => {
         const message = JSON.parse(event.data);
-        const [header] = getMessageParts(message);
-        const id = header.transactionKey || 'none';
+        const [header, content, context, message] = getMessageParts(message);
+        const id = message.sobject.Id; //header.transactionKey || 'none';
         // Collect message IDs into a Set to dedupe
         this.state.messageIds.add(id);
         // Collect message contents by ID
@@ -213,9 +213,10 @@ function getMessageParts(message) {
   const content = message.payload || {};
   const context = message.context || {};
   const header  = content.ChangeEventHeader || {};
+  console.log(`received message of ${JSON.stringify(message)}`);
   console.log(`received context of ${JSON.stringify(context)}`);
   console.log(`received content of ${JSON.stringify(content)}`);
-  return [header, content, context];
+  return [header, content, context, message];
 }
 
 export default IndexPage;
