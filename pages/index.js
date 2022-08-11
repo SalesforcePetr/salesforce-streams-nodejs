@@ -180,8 +180,8 @@ class IndexPage extends React.Component {
       // Receive Salesforce change events as they occur.
       this.eventSource.addEventListener("salesforce", event => {
         const message = JSON.parse(event.data);
-        const [header, content, context, message] = getMessageParts(message);
-        const id = message.sobject.Id; //header.transactionKey || 'none';
+        const [header, content, context, payload] = getMessageParts(message);
+        const id = payload.sobject.Id; //header.transactionKey || 'none';
         // Collect message IDs into a Set to dedupe
         this.state.messageIds.add(id);
         // Collect message contents by ID
