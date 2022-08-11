@@ -72,10 +72,10 @@ class IndexPage extends React.Component {
               const [header, content, context] = getMessageParts(message);
               return <li>
                 <p>
-                  {{content.Name}} changed address to<br/>
-                  <pre>{{content.BillingStreet}}
-{{content.BillingPostalCode}} {{content.BillingCity}}
-{{content.BillingCountry}}</pre>
+                  {content.Name} changed address to<br/>
+                  <pre>{content.BillingStreet}
+{content.BillingPostalCode} {content.BillingCity}
+{content.BillingCountry}</pre>
                 </p>
               </li>
               ;
