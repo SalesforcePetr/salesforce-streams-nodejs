@@ -45,7 +45,7 @@ class IndexPage extends React.Component {
           <title>Geänderte Adressdaten von Salesforce</title>
         </Head>
         <div>
-          <h1>{'Salesforce activity '}
+          <h1>{'Geänderte Adressen '}
 
             <span className={classNames({
               "heart": true,
@@ -72,10 +72,16 @@ class IndexPage extends React.Component {
               const [header, content, context, payload] = getMessageParts(message);
               return <li>
                 <p>
-                  Die Rechnungsanschrift von {payload.sobject.Name} (Kundennummer {payload.sobject.FinServ__CustomerID__c}) hat sich verändert und lautet jetzt:<br/>
-                  <pre>{payload.sobject.BillingStreet}
-{payload.sobject.BillingPostalCode} {payload.sobject.BillingCity}
+                  Die Rechnungsanschrift von {payload.sobject.Name} (<strong>Kundennummer {payload.sobject.FinServ__CustomerID__c}</strong>) hat sich verändert und lautet jetzt:<br/>
+                  <pre>{payload.sobject.BillingStreet}<br/>
+{payload.sobject.BillingPostalCode} {payload.sobject.BillingCity}<br/>
 {payload.sobject.BillingCountry}</pre>
+                </p>
+                <p>
+                Machine-readable payload: <br/>
+                <pre style="border: 1px solid black; background: lightgrey;">
+                  {payload}
+                </pre>
                 </p>
               </li>
               ;
@@ -181,7 +187,7 @@ class IndexPage extends React.Component {
       this.eventSource.addEventListener("salesforce", event => {
         const message = JSON.parse(event.data);
         const [header, content, context, payload] = getMessageParts(message);
-        const id = payload.sobject.Id; //header.transactionKey || 'none';
+        const id = payload.sobject.Id + '#' + payload.event.replayId; //header.transactionKey || 'none';
         // Collect message IDs into a Set to dedupe
         this.state.messageIds.add(id);
         // Collect message contents by ID
