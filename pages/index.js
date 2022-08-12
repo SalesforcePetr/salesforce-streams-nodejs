@@ -85,7 +85,7 @@ class IndexPage extends React.Component {
                 <p>
                 Machine-readable payload: <br/>
                 <pre>
-                  {payload}
+                  {JSON.stringify(payload)}
                 </pre>
                 </p>
               </li>
