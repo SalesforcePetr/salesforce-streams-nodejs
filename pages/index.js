@@ -74,6 +74,7 @@ class IndexPage extends React.Component {
               // console.log(`has message: ${JSON.stringify(message)}`);
               const [header, content, context, payload] = getMessageParts(message);
               console.log(`has payload: ${JSON.stringify(payload)}`); // TODO check this
+              let output = JSON.stringify(payload);
               return <li>
                 <p>
                   Die Rechnungsanschrift von {payload.sobject.Name} (<strong>Kundennummer {payload.sobject.FinServ__CustomerID__c}</strong>) hat sich verändert und lautet jetzt:<br/>
@@ -84,7 +85,7 @@ class IndexPage extends React.Component {
                 <p>
                 Machine-readable payload: <br/>
                 <pre style="border: 1px solid black; background: lightgrey;">
-                  {JSON.stringify(payload)}
+                  {output}
                 </pre>
                 </p>
               </li>
