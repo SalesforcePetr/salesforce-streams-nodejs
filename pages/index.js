@@ -74,19 +74,20 @@ class IndexPage extends React.Component {
               // console.log(`has message: ${JSON.stringify(message)}`);
               const [header, content, context, payload] = getMessageParts(message);
               console.log(`has payload: ${JSON.stringify(payload)}`);
-              let output = JSON.stringify(payload);
+              // let output = JSON.stringify(payload);
+              let timestamp = new Date(payload.event.createdDate).toLocaleString("de-DE", {timeZone: "Europe/Berlin"});
               return <li>
                 <p>
-                  Die Rechnungsanschrift von {payload.sobject.Name} (<strong>Kundennummer {payload.sobject.FinServ__CustomerID__c}</strong>) hat sich verändert und lautet jetzt:<br/>
+                  {timestamp}: Die Rechnungsanschrift von {payload.sobject.Name} (<strong>Kundennummer {payload.sobject.FinServ__CustomerID__c}</strong>) hat sich verändert und lautet jetzt:<br/>
                   <pre>{payload.sobject.BillingStreet}<br/>
 {payload.sobject.BillingPostalCode} {payload.sobject.BillingCity}<br/>
 {payload.sobject.BillingCountry}</pre>
                 </p>
                 <p>
                 Machine-readable payload: <br/>
-                <pre>
+                <div style={{border: "1px solid black"; background: "lightgrey"; padding: "1em"; inline-size: "40em";}}>
                   {JSON.stringify(payload)}
-                </pre>
+                </div>
                 </p>
               </li>
               ;
