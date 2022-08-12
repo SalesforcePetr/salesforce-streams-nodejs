@@ -70,9 +70,9 @@ class IndexPage extends React.Component {
             {decendingMessageIds.map( id => {
               console.log(`has id: ${id}`);
               const message = this.state.messages[id];
-              console.log(`has message: ${message}`);
+              console.log(`has message: ${JSON.stringify(message)}`);
               const [header, content, context, payload] = getMessageParts(message);
-              return <li>
+              /*return <li>
                 <p>
                   Die Rechnungsanschrift von {payload.sobject.Name} (<strong>Kundennummer {payload.sobject.FinServ__CustomerID__c}</strong>) hat sich verändert und lautet jetzt:<br/>
                   <pre>{payload.sobject.BillingStreet}<br/>
@@ -86,7 +86,8 @@ class IndexPage extends React.Component {
                 </pre>
                 </p>
               </li>
-              ;
+              ;*/
+              return <li><pre>{message}</pre></li>;
             })}
 
           </CSSTransitionGroup>
