@@ -82,7 +82,12 @@ class IndexPage extends React.Component {
 {payload.sobject.BillingPostalCode} {payload.sobject.BillingCity}<br/>
 {payload.sobject.BillingCountry}</pre>
                 </p>
-                
+                <p>
+                Machine-readable payload: <br/>
+                <pre style="border: 1px solid black; background: lightgrey;">
+                  lorem ipsum
+                </pre>
+                </p>
               </li>
               ;
 
