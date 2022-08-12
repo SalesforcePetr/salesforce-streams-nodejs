@@ -70,8 +70,8 @@ class IndexPage extends React.Component {
             {decendingMessageIds.map( id => {
               console.log(`has id: ${id}`);
               const message = this.state.messages[id];
-              console.log(`has this.state: ${JSON.stringify(this.state)}`);
-              console.log(`has message: ${JSON.stringify(message)}`);
+              // console.log(`has this.state: ${JSON.stringify(this.state)}`);
+              // console.log(`has message: ${JSON.stringify(message)}`);
               const [header, content, context, payload] = getMessageParts(message);
               console.log(`has payload: ${JSON.stringify(payload)}`); // TODO check this
               /*return <li>
@@ -89,8 +89,8 @@ class IndexPage extends React.Component {
                 </p>
               </li>
               ;*/
-              // return <li><pre>{payload}</pre></li>;
-              return <li><pre>static test</pre></li>;
+              return <li><pre>{payload}</pre></li>;
+              // return <li><pre>static test</pre></li>;
             })}
 
           </CSSTransitionGroup>
