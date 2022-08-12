@@ -81,7 +81,7 @@ class IndexPage extends React.Component {
 {payload.sobject.BillingCountry}</pre>
                 </p>
                 <p>
-                Machine-readable payload: <br/>
+                Maschinenlesbare Payload: <br/>
                 <div style={{border: "1px solid black", background: "lightgrey", padding: "1em", "font-family": "monospace", "word-break": "break-word"}}>
                   {JSON.stringify(payload, null, 2)}
                 </div>
