@@ -87,7 +87,7 @@ class IndexPage extends React.Component {
                 </p>
               </li>
               ;*/
-              return <li><pre>{message}</pre></li>;
+              return <li><pre>{payload}</pre></li>;
             })}
 
           </CSSTransitionGroup>
