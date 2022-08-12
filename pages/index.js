@@ -89,7 +89,7 @@ class IndexPage extends React.Component {
                 </p>
               </li>
               ;*/
-              return <li><pre>{payload}</pre></li>;
+              return <li><pre>{payload.sobject.Name}</pre></li>;
               // return <li><pre>static test</pre></li>;
             })}
 
