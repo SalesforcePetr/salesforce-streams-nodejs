@@ -70,7 +70,9 @@ class IndexPage extends React.Component {
             {decendingMessageIds.map( id => {
               console.log(`has id: ${id}`);
               const message = this.state.messages[id];
+              console.log(`has this.state: ${JSON.stringify(this.state)}`); // TODO check this
               console.log(`has message: ${JSON.stringify(message)}`);
+              console.log(`has payload: ${JSON.stringify(message.payload)}`);
               const [header, content, context, payload] = getMessageParts(message);
               /*return <li>
                 <p>
@@ -87,7 +89,8 @@ class IndexPage extends React.Component {
                 </p>
               </li>
               ;*/
-              return <li><pre>{payload}</pre></li>;
+              // return <li><pre>{payload}</pre></li>;
+              return <li><pre>static test</pre></li>;
             })}
 
           </CSSTransitionGroup>
@@ -189,7 +192,8 @@ class IndexPage extends React.Component {
       // Receive Salesforce change events as they occur.
       this.eventSource.addEventListener("salesforce", event => {
         const message = JSON.parse(event.data);
-        const [header, content, context, payload] = getMessageParts(message);
+        const [header, content, context, payload] = getMessageParts(message); // TODO check this
+        console.log(`addEventListener sees header: ${JSON.stringify(header)} content: ${JSON.stringify(content)} context: ${JSON.stringify(context)} payload: ${JSON.stringify(payload)}`)
         const id = payload.sobject.Id + '#' + payload.event.replayId; //header.transactionKey || 'none';
         // Collect message IDs into a Set to dedupe
         this.state.messageIds.add(id);
