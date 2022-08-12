@@ -85,7 +85,7 @@ class IndexPage extends React.Component {
                 </p>
                 <p>
                 Machine-readable payload: <br/>
-                <div style={{border: "1px solid black"; background: "lightgrey"; padding: "1em"; inline-size: "40em";}}>
+                <div style={{border: "1px solid black", background: "lightgrey", padding: "1em", inline-size: "40em"}}>
                   {JSON.stringify(payload)}
                 </div>
                 </p>
