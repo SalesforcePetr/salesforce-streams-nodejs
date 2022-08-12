@@ -70,13 +70,11 @@ class IndexPage extends React.Component {
             {decendingMessageIds.map( id => {
               console.log(`has id: ${id}`);
               const message = this.state.messages[id];
-              // console.log(`has this.state: ${JSON.stringify(this.state)}`);
-              // console.log(`has message: ${JSON.stringify(message)}`);
               const [header, content, context, payload] = getMessageParts(message);
               console.log(`has payload: ${JSON.stringify(payload)}`);
               // let output = JSON.stringify(payload);
               let timestamp = new Date(payload.event.createdDate).toLocaleString("de-DE", {timeZone: "Europe/Berlin"});
-              return <li>
+              return <li style={{"border-bottom": "1px dotted black"}}>
                 <p>
                   {timestamp}: Die Rechnungsanschrift von {payload.sobject.Name} (<strong>Kundennummer {payload.sobject.FinServ__CustomerID__c}</strong>) hat sich verändert und lautet jetzt:<br/>
                   <pre>{payload.sobject.BillingStreet}<br/>
@@ -85,22 +83,12 @@ class IndexPage extends React.Component {
                 </p>
                 <p>
                 Machine-readable payload: <br/>
-                <div style={{border: "1px solid black", background: "lightgrey", padding: "1em", "inline-size": "40em"}}>
-                  {JSON.stringify(payload)}
+                <div style={{border: "1px solid black", background: "lightgrey", padding: "1em", "inline-size": "70em", "font-family": "monospace", "word-break": "break-word"}}>
+                  {JSON.stringify(payload, null, 2)}
                 </div>
                 </p>
               </li>
               ;
-
-                /*<p>
-                Machine-readable payload: <br/>
-                <pre style="border: 1px solid black; background: lightgrey;">
-                  {output}
-                </pre>
-                </p>*/
-
-              // return <li><pre>{payload.sobject.Name}</pre></li>;
-              // return <li><pre>static test</pre></li>;
             })}
 
           </CSSTransitionGroup>
@@ -237,8 +225,8 @@ function getMessageParts(message) {
   const context = message.context || {};
   const header  = content.ChangeEventHeader || {};
   console.log(`received message of ${JSON.stringify(message)}`);
-  console.log(`received context of ${JSON.stringify(context)}`);
-  console.log(`received content of ${JSON.stringify(content)}`);
+  // console.log(`received context of ${JSON.stringify(context)}`);
+  // console.log(`received content of ${JSON.stringify(content)}`);
   return [header, content, context, message];
 }
 
