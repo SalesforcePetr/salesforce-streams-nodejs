@@ -73,7 +73,7 @@ class IndexPage extends React.Component {
               // console.log(`has this.state: ${JSON.stringify(this.state)}`);
               // console.log(`has message: ${JSON.stringify(message)}`);
               const [header, content, context, payload] = getMessageParts(message);
-              console.log(`has payload: ${JSON.stringify(payload)}`); // TODO check this
+              console.log(`has payload: ${JSON.stringify(payload)}`);
               let output = JSON.stringify(payload);
               return <li>
                 <p>
@@ -82,14 +82,17 @@ class IndexPage extends React.Component {
 {payload.sobject.BillingPostalCode} {payload.sobject.BillingCity}<br/>
 {payload.sobject.BillingCountry}</pre>
                 </p>
-                <p>
+                
+              </li>
+              ;
+
+                /*<p>
                 Machine-readable payload: <br/>
                 <pre style="border: 1px solid black; background: lightgrey;">
                   {output}
                 </pre>
-                </p>
-              </li>
-              ;
+                </p>*/
+
               // return <li><pre>{payload.sobject.Name}</pre></li>;
               // return <li><pre>static test</pre></li>;
             })}
