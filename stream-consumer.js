@@ -16,6 +16,7 @@ if (REDIS_URL == null) {
   throw new Error('Requires REDIS_URL env var.');
 }
 const redisClient  = redis.createClient(REDIS_URL);
+redisClient.flushall(); // cleanup
 const publishAsync = promisify(redisClient.publish).bind(redisClient);
 redisClient.on("error", function (err) {
   logger(`redis stream error: ${err.stack}`);
