@@ -70,10 +70,10 @@ class IndexPage extends React.Component {
             {decendingMessageIds.map( id => {
               console.log(`has id: ${id}`);
               const message = this.state.messages[id];
-              console.log(`has this.state: ${JSON.stringify(this.state)}`); // TODO check this
+              console.log(`has this.state: ${JSON.stringify(this.state)}`);
               console.log(`has message: ${JSON.stringify(message)}`);
-              console.log(`has payload: ${JSON.stringify(message.payload)}`);
               const [header, content, context, payload] = getMessageParts(message);
+              console.log(`has payload: ${JSON.stringify(payload)}`); // TODO check this
               /*return <li>
                 <p>
                   Die Rechnungsanschrift von {payload.sobject.Name} (<strong>Kundennummer {payload.sobject.FinServ__CustomerID__c}</strong>) hat sich verändert und lautet jetzt:<br/>
