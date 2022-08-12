@@ -84,7 +84,7 @@ class IndexPage extends React.Component {
                 </p>
                 <p>
                 Machine-readable payload: <br/>
-                <pre style="border: 1px solid black; background: lightgrey;">
+                <pre>
                   lorem ipsum
                 </pre>
                 </p>
